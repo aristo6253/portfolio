@@ -263,15 +263,23 @@
 
         .education-header {
             display: flex;
-            justify-content: between;
+            justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+            flex-wrap: wrap;
         }
 
         .education-degree {
             font-size: 1.3rem;
             font-weight: bold;
             color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .education-company {
+            color: var(--green-primary);
+            font-weight: 600;
+            margin-top: 0.5rem;
             transition: color 0.3s ease;
         }
 
@@ -520,6 +528,10 @@
 
             .nav-links {
                 display: none;
+            }
+
+            .theme-toggle {
+                display: flex;
             }
 
             .projects-grid {
@@ -861,25 +873,38 @@
                 body.removeAttribute('data-theme');
                 themeIcon.textContent = '🌙';
                 themeText.textContent = 'Dark';
-                localStorage.setItem('theme', 'light');
+                // Store preference (but note: localStorage not available in Claude artifacts)
+                try {
+                    localStorage.setItem('theme', 'light');
+                } catch (e) {
+                    // Fallback for environments without localStorage
+                }
             } else {
                 body.setAttribute('data-theme', 'dark');
                 themeIcon.textContent = '☀️';
                 themeText.textContent = 'Light';
-                localStorage.setItem('theme', 'dark');
+                try {
+                    localStorage.setItem('theme', 'dark');
+                } catch (e) {
+                    // Fallback for environments without localStorage
+                }
             }
         }
 
         // Load saved theme on page load
         document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
             const themeIcon = document.getElementById('theme-icon');
             const themeText = document.getElementById('theme-text');
             
-            if (savedTheme === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Light';
+            try {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.body.setAttribute('data-theme', 'dark');
+                    themeIcon.textContent = '☀️';
+                    themeText.textContent = 'Light';
+                }
+            } catch (e) {
+                // Fallback for environments without localStorage
             }
         });
 
