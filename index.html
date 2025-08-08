@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aristotelis Dimitriou - Portfolio</title>
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fdf8;
+            --bg-tertiary: #f0fdf4;
+            --bg-card: #f8fdf8;
+            --text-primary: #333;
+            --text-secondary: #374151;
+            --text-tertiary: #16a34a;
+            --border-color: rgba(74, 222, 128, 0.2);
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(22, 163, 74, 0.15);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --green-primary: #4ade80;
+            --green-secondary: #16a34a;
+            --green-gradient-start: #16a34a;
+            --green-gradient-end: #4ade80;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a2e1a;
+            --bg-tertiary: #0f3b0f;
+            --bg-card: rgba(26, 93, 26, 0.6);
+            --text-primary: #e8f5e8;
+            --text-secondary: #d1fad1;
+            --text-tertiary: #a3d9a3;
+            --border-color: rgba(74, 222, 128, 0.3);
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-medium: rgba(0, 0, 0, 0.4);
+            --header-bg: rgba(15, 59, 15, 0.95);
+            --green-primary: #4ade80;
+            --green-secondary: #16a34a;
+            --green-gradient-start: #0f3b0f;
+            --green-gradient-end: #1a5d1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px var(--shadow-light);
+            transition: all 0.3s ease;
+        }filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--green-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--green-primary);
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: var(--green-secondary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--green-primary);
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            background: linear-gradient(135deg, var(--green-secondary) 0%, var(--green-primary) 100%);
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, var(--green-gradient-start) 0%, var(--green-gradient-end) 50%, #0a2e0a 100%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .cta-button:hover {
+            background: rgba(74, 222, 128, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 0;
+            background: var(--bg-secondary);
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-secondary), var(--green-primary));
+            border-radius: 2px;
+        }
+
+        /* Education */
+        .education-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            border-left: 5px solid var(--green-primary);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            background: var(--bg-tertiary);
+        }
+
+        [data-theme="dark"] .education-item:hover {
+            background: rgba(26, 93, 26, 0.8);
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .education-degree {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .education-date {
+            background: var(--green-secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: var(--bg-tertiary);
+        }
+
+        [data-theme="dark"] .skill-category:hover {
+            background: rgba(26, 93, 26, 0.8);
+        }
+
+        .skill-category h3 {
+            color: var(--green-primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--green-secondary), var(--green-primary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #22c55e, #86efac);
+        }
+
+        /* Experience */
+        .experience-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .experience-item {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-medium);
+            background: var(--bg-tertiary);
+        }
+
+        [data-theme="dark"] .experience-item:hover {
+            background: rgba(26, 93, 26, 0.8);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            transition: color 0.3s ease;
+        }
+
+        .experience-company {
+            color: var(--green-primary);
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .experience-date {
+            background: var(--green-secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-achievements li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-achievements li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--green-primary);
+            font-weight: bold;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px var(--shadow-light);
+            transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-medium);
+            border-color: var(--green-primary);
+            background: var(--bg-tertiary);
+        }
+
+        [data-theme="dark"] .project-card:hover {
+            background: rgba(26, 93, 26, 0.8);
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .project-tech {
+            color: var(--green-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+            transition: color 0.3s ease;
+        }
+
+        .project-description {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        /* Leadership */
+        .leadership-item {
+            background: linear-gradient(135deg, var(--green-secondary) 0%, var(--green-primary) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .leadership-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .leadership-org {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">Aristotelis Dimitriou</div>
+            <ul class="nav-links">
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="theme-icon">🌙</span>
+                    <span id="theme-text">Dark</span>
+                </button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Aristotelis Dimitriou</h1>
+            <p class="hero-subtitle">Master's Student in Electrical & Electronics Engineering | Data Science Specialist</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    📍 St-Sulpice, Vaud, Switzerland
+                </div>
+                <div class="contact-item">
+                    📧 aristotelis.dimitriou@epfl.ch
+                </div>
+                <div class="contact-item">
+                    📱 +41767480266
+                </div>
+                <div class="contact-item">
+                    💼 LinkedIn: aristotelis-dimitriou
+                </div>
+            </div>
+            <a href="#experience" class="cta-button">Explore My Work</a>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item fade-in">
+                    <div class="education-header">
+                        <div>
+                            <div class="education-degree">Master of Electrical and Electronics Engineering</div>
+                            <div class="education-company">Swiss Federal Institute of Technology Lausanne (EPFL)</div>
+                            <p style="margin-top: 0.5rem; color: var(--green-secondary);">Minor in Data Science</p>
+                        </div>
+                        <div class="education-date">Sep 2022 – Sep 2025</div>
+                    </div>
+                    <p><strong>Location:</strong> Lausanne, Switzerland</p>
+                </div>
+                
+                <div class="education-item fade-in">
+                    <div class="education-header">
+                        <div>
+                            <div class="education-degree">Bachelor of Electrical and Electronics Engineering</div>
+                            <div class="education-company">Swiss Federal Institute of Technology Lausanne (EPFL)</div>
+                        </div>
+                        <div class="education-date">Sep 2018 – Jul 2022</div>
+                    </div>
+                    <p><strong>Location:</strong> Lausanne, Switzerland</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                                    <h3 style="text-align: center; margin-bottom: 2rem; color: var(--green-primary);">Relevant Coursework</h3>
+                <div class="skill-tags" style="justify-content: center;">
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">Modern NLP</span>
+                    <span class="skill-tag">Machine Learning</span>
+                    <span class="skill-tag">Applied Data Analysis</span>
+                    <span class="skill-tag">Database Systems</span>
+                    <span class="skill-tag">ANN and RL</span>
+                    <span class="skill-tag">Statistics for Data Science</span>
+                    <span class="skill-tag">Convex Optimization</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-item fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Visiting Researcher</div>
+                            <div class="experience-company">Harvard School of Engineering and Applied Sciences</div>
+                        </div>
+                        <div class="experience-date">Mar 2025 – Aug 2025</div>
+                    </div>
+                    <p><strong>Location:</strong> Boston, United States</p>
+                    <ul class="experience-achievements">
+                        <li>Conducting master thesis research in the Visual Computing Group</li>
+                        <li>Developing a dataset pairing natural language trajectory descriptions with corresponding trajectories</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Data Science Intern</div>
+                            <div class="experience-company">Logitech Europe SA</div>
+                        </div>
+                        <div class="experience-date">Aug 2024 – Feb 2025</div>
+                    </div>
+                    <p><strong>Location:</strong> Lausanne, Switzerland</p>
+                    <ul class="experience-achievements">
+                        <li>Developed machine learning models for customer churn prediction and profiling, enhancing targeting strategies for retention efforts</li>
+                        <li>Improved customer data quality by refining data pipelines and implementing validation checks, increasing model accuracy</li>
+                        <li>Assessed the quality of existing recommendation campaigns to identify strengths and weaknesses of recommendation systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-title">Generalization in Deepfake Detection</div>
+                    <div class="project-tech">Deep Learning, Generative AI, Python | Sep 2023 – Jan 2024</div>
+                    <div class="project-description">
+                        Explored deepfake detection's generalizability, focusing on preprocessing and frequency transformations. Achieved 15% improvement in deepfake detection accuracy by applying FFT-based preprocessing to enhance signal anomaly visibility.
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-title">Road Segmentation with ML</div>
+                    <div class="project-tech">Python, PyTorch, Bash, Computer Vision | Sep 2023 – Feb 2024</div>
+                    <div class="project-description">
+                        Engineered an ML pipeline using U-Net, enhanced by ensemble learning and data augmentation, for effective road segmentation from aerial imagery. Utilized DBSCAN clustering for post-processing to refine segmentation accuracy.
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-title">NFT-based Ticketing</div>
+                    <div class="project-tech">NFT, Blockchain, Ticketing, Python | Feb 2022 – Aug 2022</div>
+                    <div class="project-description">
+                        Analyzed and designed an NFT-based ticketing system to enhance user engagement and ownership. Guided by Dr. Touradj Ebrahimi, the project involved creating personalized NFTs for event ticketing.
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-title">Robust Journey Planning</div>
+                    <div class="project-tech">Python, Apache Spark, HDFS, Docker, GitLab | Feb 2022 – Aug 2022</div>
+                    <div class="project-description">
+                        Developed a predictive model using SBB data to optimize public transport routes under variable conditions. Implemented and validated routing algorithms, enhancing reliability with dynamic adjustments.
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-title">Academic LLM with DPO and Quantization</div>
+                    <div class="project-tech">Python, Hugging Face, PyTorch, LLM, NLP | 2024</div>
+                    <div class="project-description">
+                        Developed and optimized large language models for academic applications using Direct Preference Optimization and quantization techniques.
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-title">Inverted Pendulum Stabilization with RL</div>
+                    <div class="project-tech">Python, Reinforcement Learning, DDPG, PyTorch | 2023</div>
+                    <div class="project-description">
+                        Implemented reinforcement learning algorithms for stabilizing an inverted pendulum system using Deep Deterministic Policy Gradient (DDPG).
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">C/C++</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">R</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">Kotlin</span>
+                        <span class="skill-tag">VHDL</span>
+                        <span class="skill-tag">LaTeX</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Python Libraries</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">scikit-learn</span>
+                        <span class="skill-tag">Hugging Face</span>
+                        <span class="skill-tag">NetworkX</span>
+                        <span class="skill-tag">CVXPY</span>
+                        <span class="skill-tag">spaCy</span>
+                        <span class="skill-tag">MOSEK/Gurobi</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Developer Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">GitLab</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">XILINX</span>
+                        <span class="skill-tag">Android Studio</span>
+                        <span class="skill-tag">Notion</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Greek (Native)</span>
+                        <span class="skill-tag">French (Advanced)</span>
+                        <span class="skill-tag">English (Advanced)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="section">
+        <div class="container">
+            <h2 class="section-title">Leadership & Extracurricular</h2>
+            <div class="leadership-item fade-in">
+                <div class="leadership-title">Treasurer</div>
+                <div class="leadership-org">Lausanne Greek Student Association (EPFL/UNIL/EHL)</div>
+                <div class="experience-date" style="display: inline-block; margin-bottom: 1rem;">Sep 2023 – Feb 2025</div>
+                <ul class="experience-achievements">
+                    <li>Oversaw financial transactions, ensuring accurate record-keeping and transparency</li>
+                    <li>Managed budget optimization, resulting in balanced financial years</li>
+                    <li>Collaborated with board members to align financial strategies with organizational objectives</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">References</h2>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.1rem; color: var(--green-secondary);">References available upon request</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 15px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                    <h4 style="color: var(--green-primary); margin-bottom: 0.5rem;">Prof. Hanspeter Pfister</h4>
+                    <p style="font-weight: 600; color: var(--text-primary);">An Wang Professor of Computer Science</p>
+                    <p style="color: var(--green-secondary);">Harvard University</p>
+                </div>
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 15px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                    <h4 style="color: var(--green-primary); margin-bottom: 0.5rem;">Prof. Touradj Ebrahimi</h4>
+                    <p style="font-weight: 600; color: var(--text-primary);">Director, MMSPG Lab</p>
+                    <p style="color: var(--green-secondary);">EPFL</p>
+                </div>
+                <div style="background: var(--bg-card); padding: 2rem; border-radius: 15px; text-align: center; border: 1px solid var(--border-color); transition: all 0.3s ease;">
+                    <h4 style="color: var(--green-primary); margin-bottom: 0.5rem;">Prof. Soumaya Henchoz</h4>
+                    <p style="font-weight: 600; color: var(--text-primary);">Head of Data Science</p>
+                    <p style="color: var(--green-secondary);">Logitech</p>
+                </div>
+            </div>G Lab</p>
+                    <p style="color: #16a34a;">EPFL</p>
+                </div>
+                <div style="background: #f8fdf8; padding: 2rem; border-radius: 15px; text-align: center; border: 1px solid rgba(74, 222, 128, 0.2);">
+                    <h4 style="color: #4ade80; margin-bottom: 0.5rem;">Prof. Soumaya Henchoz</h4>
+                    <p style="font-weight: 600; color: #333;">Head of Data Science</p>
+                    <p style="color: #16a34a;">Logitech</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Aristotelis Dimitriou. All rights reserved.</p>
+            <p>Built with passion for data science and machine learning.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.textContent = '🌙';
+                themeText.textContent = 'Dark';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeIcon.textContent = '☀️';
+                themeText.textContent = 'Light';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            
+            if (window.scrollY > 100) {
+                if (isDark) {
+                    header.style.background = 'rgba(15, 59, 15, 0.98)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                }
+            } else {
+                if (isDark) {
+                    header.style.background = 'rgba(15, 59, 15, 0.95)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+
+        // Project cards hover effect
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
